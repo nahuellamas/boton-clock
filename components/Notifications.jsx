@@ -4,7 +4,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Notifications = ({setTime, defaultTime, time, notiTime, setNotiTime}) => {
     const [names, setNames] = useState(null);
-
     const handleTimeNotifications = () => {
         const color = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
         //asignamos un color dependiendo de los segundos
@@ -47,11 +46,11 @@ const Notifications = ({setTime, defaultTime, time, notiTime, setNotiTime}) => {
 
     
 
-    //se activan notificaciones de un usuario random de la variable randomNames con ganancias random en un intervalo random entre 0ms a 60000ms pero varias veces
+    //se activan notificaciones de un usuario random de la variable randomNames con ganancias random en un intervalo random de segundos con minimo 0 y maximo 60
     useEffect(() => {
         const interval = setInterval(() => {
             const randomNames = names[Math.floor(Math.random() * names.length)];
-            //hacemos un switch random para elegir una de las 4 notificaciones
+            //hacemos un switch random para elegir una de las 4 notificaciones random 
             const random = Math.floor(Math.random() * 4);
             //ganacias random entre 0 y 5 con 2 decimales
             const randomGanancia = (Math.random()* 5).toFixed(2);
@@ -132,7 +131,7 @@ const Notifications = ({setTime, defaultTime, time, notiTime, setNotiTime}) => {
                         setTime(defaultTime);
                     break;
             }
-        }, Math.floor(Math.random() * 60000));
+        }, Math.floor((Math.random() * (0 - 60000 + 1)) + 60000));
         return () => clearInterval(interval);
     }, [names, setTime, defaultTime, handleTimeNotifications]);
     

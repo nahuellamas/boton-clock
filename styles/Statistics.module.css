@@ -153,12 +153,11 @@
 .segundos{
     font-size: clamp(1.5rem, 2vw, 2rem);
     font-weight: bold;
-    color: #ffffff;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
 }
 .parrafoInfo{
-    font-size: clamp(1vw, 1.5vh, 4vmin);
+    font-size: clamp(1vw, 1.8vh, 5vmin);
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
     color: #2193b0;

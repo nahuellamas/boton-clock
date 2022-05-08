@@ -2,7 +2,8 @@ import react, {useState, useEffect} from 'react';
 import styles from '../styles/Statistics.module.css'
 const Statistics = ({botonSeconds, notiTime}) => {
     const [numberOfColors, setNumberOfColors] = useState([]);
-
+    const [maxNumberOfColors, setMaxNumberOfColors] = useState('');
+    
     const handleColorContainer = () => {
             if (botonSeconds <= 11 && botonSeconds >= 0) {
                 return styles.ContainerRed;
@@ -60,6 +61,27 @@ const Statistics = ({botonSeconds, notiTime}) => {
         }
     }
 
+    //retornamos el color que mas hay del array numberOfColors
+    useEffect(() => {
+        if (numberOfColors[0] > numberOfColors[1] && numberOfColors[0] > numberOfColors[2] && numberOfColors[0] > numberOfColors[3] && numberOfColors[0] > numberOfColors[4] && numberOfColors[0] > numberOfColors[5]) {
+            setMaxNumberOfColors('Rojo');
+        } else if (numberOfColors[1] > numberOfColors[0] && numberOfColors[1] > numberOfColors[2] && numberOfColors[1] > numberOfColors[3] && numberOfColors[1] > numberOfColors[4] && numberOfColors[1] > numberOfColors[5]) {
+            setMaxNumberOfColors('Naranja');
+        } else if (numberOfColors[2] > numberOfColors[0] && numberOfColors[2] > numberOfColors[1] && numberOfColors[2] > numberOfColors[3] && numberOfColors[2] > numberOfColors[4] && numberOfColors[2] > numberOfColors[5]) {
+            setMaxNumberOfColors('Amarillo');
+        } else if (numberOfColors[3] > numberOfColors[0] && numberOfColors[3] > numberOfColors[1] && numberOfColors[3] > numberOfColors[2] && numberOfColors[3] > numberOfColors[4] && numberOfColors[3] > numberOfColors[5]) {
+            setMaxNumberOfColors('Verde');
+        } else if (numberOfColors[4] > numberOfColors[0] && numberOfColors[4] > numberOfColors[1] && numberOfColors[4] > numberOfColors[2] && numberOfColors[4] > numberOfColors[3] && numberOfColors[4] > numberOfColors[5]) {
+            setMaxNumberOfColors('Azul');
+        } else if (numberOfColors[5] > numberOfColors[0] && numberOfColors[5] > numberOfColors[1] && numberOfColors[5] > numberOfColors[2] && numberOfColors[5] > numberOfColors[3] && numberOfColors[5] > numberOfColors[4]) {
+            setMaxNumberOfColors('Morado');
+        } else {
+            return;
+        }
+    } ,[numberOfColors]);
+        
+
+
     return (    
         <div className={styles.middle}>
             <div className={styles.containerStats}>
@@ -67,7 +89,9 @@ const Statistics = ({botonSeconds, notiTime}) => {
                 <div className={handleColorContainer()}>
                     <h2 className={styles.segundos}>{botonSeconds} Segundos</h2>
                 </div>
-                <p className={styles.parrafoInfo}>¿Sabias que la gran parte de las personas seleccionaron en el color Purpura y Azul?</p>
+                {maxNumberOfColors !== '' ?
+                <p className={styles.parrafoInfo}>¿Sabias que la gran parte de las personas seleccionaron en el color {maxNumberOfColors}?</p>
+                : null}
                 <p className={styles.parrafoInfo}>Tu estas entre el <span className={styles.porcentageStats}>
                     {handlePercentage() === 'NaN' ? 0 : handlePercentage()}%
                 </span> de personas que seleccionaron estos segundos.</p>

@@ -11,7 +11,6 @@ const SimpleCounter = () => {
     const [time, setTime] = useState(defaultTime);
     const [isRunning, setIsRunning] = useState(true);
     const [botonSeconds, setBotonSeconds] = useState(null);
-    const [botonSecondsExternos, setBotonSecondsExternos] = useState([]);
     const [usedButton , setUsedButton] = useState(null);
     const [notiTime, setNotiTime] = useState([]);
 
@@ -96,7 +95,7 @@ const SimpleCounter = () => {
 
     return (
         <>
-        <Notifications notiTime={notiTime} setNotiTime={setNotiTime} setTime={setTime} defaultTime={defaultTime} time={time} botonSecondsExternos={botonSecondsExternos}/>
+        <Notifications notiTime={notiTime} setNotiTime={setNotiTime} setTime={setTime} defaultTime={defaultTime} time={time} />
         <div className={styles.countdownContainer}>
             <span>{time.seconds}</span>
         </div>
